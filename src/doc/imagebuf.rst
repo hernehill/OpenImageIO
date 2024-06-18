@@ -204,7 +204,7 @@ Deep data in an ImageBuf
 Error Handling
 ==============
 
-.. doxygenfunction:: OIIO::ImageBuf::errorf
+.. doxygenfunction:: OIIO::ImageBuf::errorfmt
 .. doxygenfunction:: OIIO::ImageBuf::has_error
 .. doxygenfunction:: OIIO::ImageBuf::geterror
 
@@ -236,6 +236,63 @@ Miscellaneous
     Manually lock or unlock the mutex that protects the ImageBuf from
     concurrent access by multiple threads. Use with caution -- this should
     almost never be needed in ordinary user code.
+
+
+
+Writing your own image processing functions
+===========================================
+
+In this section, we will discuss how to write functions that operate
+pixel by pixel on an ImageBuf. There are several different approaches
+to this, with different trade-offs in terms of speed, flexibility, and
+simplicity of implementation.
+
+Simple pixel-by-pixel access with `ImageBufAlgo::perpixel_op()`
+---------------------------------------------------------------
+
+Pros:
+
+Cons:
+
+.. doxygenfunction: ImageBuf OIIO::ImageBufAlgo::perpixel_op(const ImageBuf& src, bool(*op)(span<float>, cspan<float>), int prepflags = ImageBufAlgo::IBAprep_DEFAULT, int nthreads = 0)
+
+Examples:
+
+.. code-block:: cpp
+
+    // Assume ImageBuf A, B are the inputs, ImageBuf R is the output
+
+    /////////////////////////////////////////////////////////////////
+    // Approach 1: using a standalone function to add two images
+    bool my_add (span<float> r, cspan<float> a, cspan<float> b) {
+        for (size_t c = 0, nc = size_t(r.size()); c < nc; ++c)
+            r[c] = a[c] + b[c];
+        return true;
+    }
+
+    R = ImageBufAlgo::perpixel_op(A, B, my_add);
+
+    /////////////////////////////////////////////////////////////////
+    // Approach 2: using a "functor" class to add two images
+    struct Adder {
+        bool operator() (span<float> r, cspan<float> a, cspan<float> b) {
+            for (size_t c = 0, nc = size_t(r.size()); c < nc; ++c)
+                r[c] = a[c] + b[c];
+            return true;
+        }
+    };
+
+    Adder adder;
+    R = ImageBufAlgo::perpixel_op(A, B, adder);
+    
+    /////////////////////////////////////////////////////////////////
+    // Approach 3: using a lambda to add two images
+    R = ImageBufAlgo::perpixel_op(A, B,
+            [](span<float> r, cspan<float> a, cspan<float> b) {
+                for (size_t c = 0, nc = size_t(r.size()); c < nc; ++c)
+                    r[c] = a[c] + b[c];
+                return true;
+            });
 
 
 
