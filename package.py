@@ -25,7 +25,7 @@ requires = [
     "ffmpeg",
     "openexr-3.1",  # will bring imath
     "openvdb-11",
-    "ocio-2.3.2",
+    "ocio-2.1.3",  # although we have built 2.3.2, USD still needs 2.1.3
 ]
 
 private_build_requires = []
@@ -50,7 +50,7 @@ def commands():
 
     env.PATH.append("{root}/bin")
     env.LD_LIBRARY_PATH.append("{root}/lib64")
-    env.PKG_CONFIG_PATH.append("{root}/lib64/cmake/OpenImageIO")
+    env.CMAKE_MODULE_PATH.append("{root}/lib64/cmake/OpenImageIO")
 
     if "python" in resolve:
         python_ver = resolve["python"].version
