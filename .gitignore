@@ -20,3 +20,8 @@ _coverage/
 /*.jpg
 /*.tx
 /*.log
+
+# HH
+_rez_build
+.vscode
+.idea

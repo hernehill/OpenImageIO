@@ -91,6 +91,13 @@ if (CMAKE_USE_FOLDERS)
 endif ()
 
 
+#############################################################
+# HH
+set(pybind11_ROOT $ENV{PYBIND11_ROOT})
+set(OpenVDB_ROOT $ENV{OPENVDB_ROOT})
+set(FFmpeg_ROOT $ENV{FFMPEG_ROOT})
+#############################################################
+
 option (VERBOSE "Print lots of messages while compiling" OFF)
 if (VERBOSE)
     set (CMAKE_MESSAGE_LOG_LEVEL "VERBOSE" CACHE STRING "CMake log level to display")
@@ -98,13 +105,13 @@ else ()
     set (CMAKE_MESSAGE_LOG_LEVEL "STATUS" CACHE STRING "CMake log level to display")
 endif ()
 option (${PROJ_NAME}_BUILD_TOOLS "Build the command-line tools" ON)
-option (${PROJ_NAME}_BUILD_TESTS "Build the unit tests" ON)
+option (${PROJ_NAME}_BUILD_TESTS "Build the unit tests" OFF)  # Marcelo: was ON
 set (OIIO_LIBNAME_SUFFIX "" CACHE STRING
      "Optional name appended to ${PROJECT_NAME} libraries that are built")
 option (BUILD_OIIOUTIL_ONLY "If ON, will build *only* libOpenImageIO_Util" OFF)
-option (BUILD_DOCS "If ON, build documentation and man pages." ON)
-option (INSTALL_DOCS "If ON, install documentation and man pages." ON)
-option (INSTALL_FONTS "If ON, install default fonts" ON)
+option (BUILD_DOCS "If ON, build documentation and man pages." OFF)  # Marcelo: was ON
+option (INSTALL_DOCS "If ON, install documentation and man pages." OFF)  # Marcelo: was ON
+option (INSTALL_FONTS "If ON, install default fonts" OFF)  # Marcelo: was ON
 option (EMBEDPLUGINS "Embed format plugins in libOpenImageIO" ON)
 set (PLUGIN_SEARCH_PATH "" CACHE STRING "Default plugin search path")
 file (TO_NATIVE_PATH "${PLUGIN_SEARCH_PATH}" PLUGIN_SEARCH_PATH_NATIVE)
