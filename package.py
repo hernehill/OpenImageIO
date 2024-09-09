@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.5.9.0.hh.1.0.0"
+version = "2.5.9.0.hh.1.1.0"
 
 authors = [
     "AcademySoftwareFoundation",
@@ -25,17 +25,21 @@ requires = [
     "ffmpeg",
     "openexr-3.1",  # will bring imath
     "openvdb-11",
-    "ocio-2.1.3",  # although we have built 2.3.2, USD still needs 2.1.3
 ]
 
 private_build_requires = []
 
 variants = [
-    ["python-3.7"],
-    ["python-3.9"],
-    ["python-3.10"],
-    ["python-3.11"],
-    ["python-3.12"],
+    ["python-3.7", "ocio-2.1.3"],
+    ["python-3.7", "ocio-2.3.2"],
+    ["python-3.9", "ocio-2.1.3"],
+    ["python-3.9", "ocio-2.3.2"],
+    ["python-3.10", "ocio-2.1.3"],
+    ["python-3.10", "ocio-2.3.2"],
+    ["python-3.11", "ocio-2.1.3"],
+    ["python-3.11", "ocio-2.3.2"],
+    ["python-3.12", "ocio-2.1.3"],
+    ["python-3.12", "ocio-2.3.2"],
 ]
 
 
