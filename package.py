@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.5.9.0.hh.1.1.0"
+version = "2.5.9.0.hh.1.2.0"
 
 authors = [
     "AcademySoftwareFoundation",
@@ -21,7 +21,6 @@ requires = [
     # "pugixml-1.14",  # will use bundled-in pugixml
     "tbb-2020.3",
     "pybind11",
-    "numpy",
     "ffmpeg",
     "openexr-3.1",  # will bring imath
     "openvdb-11",
@@ -30,16 +29,16 @@ requires = [
 private_build_requires = []
 
 variants = [
-    ["python-3.7", "ocio-2.1.3"],
-    ["python-3.7", "ocio-2.3.2"],
-    ["python-3.9", "ocio-2.1.3"],
-    ["python-3.9", "ocio-2.3.2"],
-    ["python-3.10", "ocio-2.1.3"],
-    ["python-3.10", "ocio-2.3.2"],
-    ["python-3.11", "ocio-2.1.3"],
-    ["python-3.11", "ocio-2.3.2"],
-    ["python-3.12", "ocio-2.1.3"],
-    ["python-3.12", "ocio-2.3.2"],
+    ["python-3.7", "ocio-2.1.3", "numpy-1.21.6"],
+    ["python-3.7", "ocio-2.3.2", "numpy-1.21.6"],
+    ["python-3.9", "ocio-2.1.3", "numpy-1.26.4"],
+    ["python-3.9", "ocio-2.3.2", "numpy-1.26.4"],
+    ["python-3.10", "ocio-2.1.3", "numpy-1.26.4"],
+    ["python-3.10", "ocio-2.3.2", "numpy-1.26.4"],
+    ["python-3.11", "ocio-2.1.3", "numpy-1.26.4"],
+    ["python-3.11", "ocio-2.3.2", "numpy-1.26.4"],
+    ["python-3.12", "ocio-2.1.3", "numpy-1.26.4"],
+    ["python-3.12", "ocio-2.3.2", "numpy-1.26.4"],
 ]
 
 
