@@ -15,7 +15,7 @@ with scope("config") as c:
 
 requires = [
     "libtiff",
-    "libjpeg",
+    "libjpeg-3.1.4.1.hh.1.0.1",
     "libpng",
     "freetype",
     # "pugixml-1.14",  # will use bundled-in pugixml
