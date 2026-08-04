@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.5.16.0.hh.1.0.1"
+version = "2.5.16.0.hh.1.0.2"
 
 authors = [
     "AcademySoftwareFoundation",
