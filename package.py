@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.5.16.0.hh.1.0.2"
+version = "2.5.16.0.hh.1.0.3"
 
 authors = [
     "AcademySoftwareFoundation",
@@ -21,7 +21,7 @@ requires = [
     # "pugixml-1.14",  # will use bundled-in pugixml
     "tbb-2021.9",
     "pybind11",
-    # "ffmpeg",  # ffmpeg was built statically (because of conflicts with Houdini) and OIIO is complaining
+    "ffmpeg",  # ffmpeg was built statically (because of conflicts with Houdini) and OIIO is complaining
     "openexr-3.1",  # will bring imath
     "openvdb-11",
 ]

@@ -56,6 +56,11 @@ else ()
   find_library(FFMPEG_LIBSWSCALE
     NAMES swscale
     HINTS ${_FFMPEG_SWSCALE_LIBRARY_DIRS} )
+
+  pkg_check_modules(_FFMPEG_SWRESAMPLE QUIET libswresample)
+  find_library(FFMPEG_LIBSWRESAMPLE
+    NAMES swresample
+    HINTS ${_FFMPEG_SWRESAMPLE_LIBRARY_DIRS} )
 endif ()
 
 if (FFMPEG_INCLUDES)
@@ -130,7 +135,45 @@ if (FFmpeg_FOUND)
       ${FFMPEG_LIBAVFORMAT}
       ${FFMPEG_LIBAVUTIL}
       ${FFMPEG_LIBSWSCALE}
+      ${FFMPEG_LIBSWRESAMPLE}
     )
+
+    if (WIN32)
+        # Our FFmpeg is always built statically on Windows (--enable-static
+        # --disable-shared, to avoid conflicts with Houdini's own FFmpeg
+        # DLLs), so the transitive dependencies that a shared avcodec.dll
+        # would normally carry with it have to be linked explicitly here.
+        # These come straight from the Libs: line of the .pc files that the
+        # ffmpeg rez package's own build generates for libavcodec/libavformat/
+        # libavutil.
+        find_library(FFMPEG_X264_LIBRARY
+            NAMES libx264 x264
+            HINTS "$ENV{REZ_X264_ROOT}/lib")
+        find_library(FFMPEG_X265_LIBRARY
+            NAMES x265-static x265
+            HINTS "$ENV{REZ_X265_ROOT}/lib")
+
+        if (NOT FFMPEG_X264_LIBRARY)
+            message (WARNING "FFmpeg: could not find x264 library (checked $ENV{REZ_X264_ROOT}/lib) - link will likely fail with unresolved x264_* symbols")
+        endif ()
+        if (NOT FFMPEG_X265_LIBRARY)
+            message (WARNING "FFmpeg: could not find x265 library (checked $ENV{REZ_X265_ROOT}/lib) - link will likely fail with unresolved x265_* symbols")
+        endif ()
+
+        list(APPEND FFMPEG_LIBRARIES
+            ${FFMPEG_X264_LIBRARY}
+            ${FFMPEG_X265_LIBRARY}
+            mfuuid.lib
+            ole32.lib
+            strmiids.lib
+            user32.lib
+            secur32.lib
+            ncrypt.lib
+            crypt32.lib
+            ws2_32.lib
+            bcrypt.lib
+        )
+    endif ()
 endif ()
 
 
