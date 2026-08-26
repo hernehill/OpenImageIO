@@ -59,10 +59,13 @@ def commands():
         if python_ver.major == 3:
             if python_ver.minor == 9:
                 env.PYTHONPATH.append("{root}/lib/python3.9/site-packages")
+                env.UE_PYTHONPATH.append("{root}/lib/python3.9/site-packages")
             elif python_ver.minor == 10:
                 env.PYTHONPATH.append("{root}/lib/python3.10/site-packages")
+                env.UE_PYTHONPATH.append("{root}/lib/python3.10/site-packages")
             elif python_ver.minor == 11:
                 env.PYTHONPATH.append("{root}/lib/python3.11/site-packages")
+                env.UE_PYTHONPATH.append("{root}/lib/python3.11/site-packages")
 
 
 uuid = "repository.OpenImageIO"
