@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.5.16.0.hh.1.0.4"
+version = "2.5.16.0.hh.1.0.5"
 
 authors = [
     "AcademySoftwareFoundation",
@@ -51,7 +51,8 @@ def commands():
     env.OPENIMAGEIO_ROOT_DIR = "{root}"  # for OpenColorIO
 
     env.PATH.append("{root}/bin")
-    env.PATH.append("{root}/lib")
+    env.LD_LIBRARY_PATH.append("{root}/bin")
+    env.LIB.append("{root}/lib")
     env.CMAKE_MODULE_PATH.append("{root}/lib/cmake/OpenImageIO")
 
     if "python" in resolve:
