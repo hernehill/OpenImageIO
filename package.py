@@ -23,21 +23,26 @@ requires = [
     "pybind11",
     "ffmpeg",  # ffmpeg was built statically (because of conflicts with Houdini) and OIIO is complaining
     "openexr-3.1",  # will bring imath
-    "openvdb-11",
 ]
 
 private_build_requires = ["visual_studio"]
 
 variants = [
-    ["python-3.9", "ocio-2.1.3", "numpy-1.26.4"],
-    ["python-3.9", "ocio-2.2.1", "numpy-1.26.4"],
-    ["python-3.9", "ocio-2.3.2", "numpy-1.26.4"],
-    ["python-3.10", "ocio-2.1.3", "numpy-1.26.4"],
-    ["python-3.10", "ocio-2.2.1", "numpy-1.26.4"],
-    ["python-3.10", "ocio-2.3.2", "numpy-1.26.4"],
-    ["python-3.11", "ocio-2.1.3", "numpy-1.26.4"],
-    ["python-3.11", "ocio-2.2.1", "numpy-1.26.4"],
-    ["python-3.11", "ocio-2.3.2", "numpy-1.26.4"],
+    ["python-3.9", "ocio-2.1.3", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.9", "ocio-2.2.1", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.9", "ocio-2.3.2", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.10", "ocio-2.1.3", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.10", "ocio-2.1.3", "numpy-1.26.4", "openvdb-12"],
+    ["python-3.10", "ocio-2.2.1", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.10", "ocio-2.2.1", "numpy-1.26.4", "openvdb-12"],
+    ["python-3.10", "ocio-2.3.2", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.10", "ocio-2.3.2", "numpy-1.26.4", "openvdb-12"],
+    ["python-3.11", "ocio-2.1.3", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.11", "ocio-2.1.3", "numpy-1.26.4", "openvdb-12"],
+    ["python-3.11", "ocio-2.2.1", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.11", "ocio-2.2.1", "numpy-1.26.4", "openvdb-12"],
+    ["python-3.11", "ocio-2.3.2", "numpy-1.26.4", "openvdb-11"],
+    ["python-3.11", "ocio-2.3.2", "numpy-1.26.4", "openvdb-12"],
 ]
 
 
