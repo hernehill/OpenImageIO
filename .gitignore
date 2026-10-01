@@ -28,4 +28,5 @@ gastest.o
 /*.tx
 /*.log
 
-
+# HH
+_rez_build
