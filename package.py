@@ -29,7 +29,6 @@ requires = [
 private_build_requires = []
 
 variants = [
-    ["python-3.11", "ocio-2.5.2", "numpy-2"],
     ["python-3.13", "ocio-2.5.2", "numpy-2"],
 ]
 
